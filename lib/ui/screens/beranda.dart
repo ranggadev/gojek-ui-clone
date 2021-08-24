@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:indojek/common/my_colors.dart';
 import 'package:indojek/common/my_font_size.dart';
+import 'package:indojek/ui/widgets/custom_button_icon.dart';
 
 class Beranda extends StatefulWidget {
   const Beranda({Key? key}) : super(key: key);
@@ -25,6 +26,8 @@ class _BerandaState extends State<Beranda> {
   ];
 
   int tabBarIndex = 0;
+
+  int balanceBalance = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -144,30 +147,101 @@ class _BerandaState extends State<Beranda> {
 
     Widget balance() {
       return Container(
-        height: 150,
+        height: 130,
         decoration: BoxDecoration(
-          color: MyColors.blue,
-          borderRadius: BorderRadius.circular(30)
-        ),
+            color: MyColors.blue, borderRadius: BorderRadius.circular(30)),
         child: Row(
           children: [
-            // Container(
-            //   height: 20,
-            //   width: 5,
-            //   decoration: BoxDecoration(
-            //     color: MyColors.softGrey,
-            //     borderRadius: BorderRadius.circular(20)
-            //   ),
-            // ),
-            Container(
-              height: 110,
-              width: 180,
-              decoration: BoxDecoration(
-                color: MyColors.white,
-                borderRadius: BorderRadius.circular(20)
-              ),
-              // child: ,
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ...List.generate(
+                  2,
+                  (index) => Container(
+                    margin: EdgeInsets.symmetric(horizontal: 13, vertical: 5),
+                    height: 16,
+                    width: 4,
+                    decoration: BoxDecoration(
+                        color: (balanceBalance == index) ? MyColors.white : MyColors.softGrey,
+                        borderRadius: BorderRadius.circular(100)),
+                  ),
+                )
+              ],
             ),
+            Container(
+              padding: EdgeInsets.all(10),
+              height: 90,
+              width: 150,
+              decoration: BoxDecoration(
+                  color: MyColors.white,
+                  borderRadius: BorderRadius.circular(20)),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "IndoPay",
+                    style: TextStyle(
+                      color: MyColors.blackText,
+                      fontSize: MyFontSize.large1,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    "Saldo masih kosong",
+                    style: TextStyle(
+                      color: MyColors.blackText,
+                      fontSize: MyFontSize.medium1,
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  Text(
+                    "Klik buat isi",
+                    style: TextStyle(
+                      color: MyColors.green,
+                      fontSize: MyFontSize.medium1,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(width: 5),
+            Expanded(
+              child: CustomButtonIcon(
+                action: () {},
+                iconPath: "assets/images/ic_bayar.png",
+                text: "Bayar",
+                fontColor: MyColors.white,
+                height: 33,
+                width: 33,
+                isBold: true,
+              ),
+            ),
+            Expanded(
+              child: CustomButtonIcon(
+                action: () {},
+                iconPath: "assets/images/ic_topup.png",
+                text: "Top Up",
+                fontColor: MyColors.white,
+                height: 33,
+                width: 33,
+                isBold: true,
+              ),
+            ),
+            Expanded(
+              child: CustomButtonIcon(
+                action: () {},
+                iconPath: "assets/images/ic_eksplor.png",
+                text: "Eksplor",
+                fontColor: MyColors.white,
+                height: 33,
+                width: 33,
+                isBold: true,
+              ),
+            ),
+            SizedBox(width: 10),
           ],
         ),
       );
