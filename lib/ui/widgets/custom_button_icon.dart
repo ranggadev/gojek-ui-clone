@@ -40,7 +40,7 @@ class CustomButtonIcon extends StatelessWidget {
             Text(
               text,
               style: TextStyle(
-                color: fontColor == null ? MyColors.blackText : MyColors.white,
+                color: fontColor == null ? MyColors.blackText : fontColor,
                 fontSize: fontSize == null ? MyFontSize.medium2 : fontSize,
                 fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
               ),
