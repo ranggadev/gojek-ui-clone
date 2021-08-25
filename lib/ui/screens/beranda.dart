@@ -6,6 +6,7 @@ import 'package:indojek/ui/widgets/card_goclub.dart';
 import 'package:indojek/ui/widgets/card_info.dart';
 import 'package:indojek/ui/widgets/custom_button_icon.dart';
 import 'package:indojek/ui/widgets/custom_card.dart';
+import 'package:indojek/ui/widgets/nav_bottom.dart';
 import 'package:indojek/ui/widgets/subtitle.dart';
 import 'package:indojek/ui/widgets/scroll_brush.dart';
 
@@ -334,7 +335,7 @@ class _BerandaState extends State<Beranda> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Subtitle(
-                  iconPath: "assets/images/ic_idoride.png",
+                  iconPath: "assets/images/ic_indoride.png",
                   iconText: "IndoJek",
                   subtitle: "Promo merdeka buat kamu",
                   caption:
@@ -375,9 +376,11 @@ class _BerandaState extends State<Beranda> {
             ],
           ),
           if (isBrush)
-            Align(alignment: Alignment.topCenter, child: ScrollBrush()),
-          Align(
-            alignment: isCollapseNavBottom ? Alignment.bottomCenter : Alignment.topCenter,
+          Align(alignment: Alignment.topCenter, child: ScrollBrush()),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
             child: GestureDetector(
               onPanUpdate: (details) {
                 if (details.delta.dy < 0) {
@@ -390,69 +393,9 @@ class _BerandaState extends State<Beranda> {
                   setState(() {});
                 }
               },
-              child: Padding(
-                padding: isCollapseNavBottom ? EdgeInsets.all(30) : EdgeInsets.zero,
-                child: IntrinsicHeight(
-                  child: CustomCard(
-                    padding: EdgeInsets.all(10),
-                    bgColor: MyColors.white,
-                    shadow: true,
-                    elevationY: 5,
-                    shadowBlur: 30,
-                    borderRadius: isCollapseNavBottom ? BorderRadius.circular(1000) : BorderRadius.only(
-                      topLeft: Radius.circular(25),
-                      topRight: Radius.circular(25),
-                    ),
-                    child: Column(
-                      children: [
-                        CustomCard(
-                            height: 6,
-                            width: 40,
-                            bgColor: MyColors.grey,
-                            shadow: false),
-                        SizedBox(height: 10),
-                        ...List.generate(isCollapseNavBottom ? 1 : 10, (index) =>
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              SizedBox(width: 5),
-                              CustomButtonIcon(
-                                action: () {},
-                                iconPath: "assets/images/ic_idoride.png",
-                                text: "IndoRide",
-                                height: 50,
-                                width: 50,
-                              ),
-                              CustomButtonIcon(
-                                action: () {},
-                                iconPath: "assets/images/ic_idocar.png",
-                                text: "IndoCar",
-                                height: 50,
-                                width: 50,
-                              ),
-                              CustomButtonIcon(
-                                action: () {},
-                                iconPath: "assets/images/ic_indofood.png",
-                                text: "IndoFood",
-                                height: 50,
-                                width: 50,
-                              ),
-                              CustomButtonIcon(
-                                action: () {},
-                                iconPath: "assets/images/ic_indosend.png",
-                                text: "IndoSend",
-                                height: 50,
-                                width: 50,
-                              ),
-                              SizedBox(width: 5),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              child: NavBottom(
+                isCollapse: isCollapseNavBottom,
+              )
             ),
           ),
         ],
